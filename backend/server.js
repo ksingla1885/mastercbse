@@ -563,9 +563,14 @@ app.use('/api/content', contentRoutes);
 // Error handling middleware (must be last)
 app.use(errorHandler);
 
-// Start server
-app.listen(PORT, () => {
-    console.log(`✅ Server running on port ${PORT}`);
-    console.log(`📍 Environment: ${serverConfig.env}`);
-    console.log(`🌐 URL: http://localhost:${PORT}`);
-});
+// Start server (only if run directly, not when required/imported)
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`✅ Server running on port ${PORT}`);
+        console.log(`📍 Environment: ${serverConfig.env}`);
+        console.log(`🌐 URL: http://localhost:${PORT}`);
+    });
+}
+
+// Export the app for Vercel
+module.exports = app;
