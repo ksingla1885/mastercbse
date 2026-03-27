@@ -90,16 +90,30 @@ const comparePassword = (inputPassword, storedPassword) => {
 // Static files - point to frontend-react/dist (once built) or backend assets
 // app.use(express.static(path.join(__dirname, '..', 'frontend', 'public')));
 
-// Ensure content directory exists
-const contentUploadsDir = path.join(__dirname, 'uploads', 'content');
-if (!fs.existsSync(contentUploadsDir)) {
-    fs.mkdirSync(contentUploadsDir, { recursive: true });
+// Ensure content directory exists 
+const contentUploadsDir = process.env.NODE_ENV === 'production' 
+    ? path.join('/tmp', 'uploads', 'content') 
+    : path.join(__dirname, 'uploads', 'content');
+
+try {
+    if (!fs.existsSync(contentUploadsDir)) {
+        fs.mkdirSync(contentUploadsDir, { recursive: true });
+    }
+} catch (err) {
+    console.warn('⚠️  Could not create content uploads directory:', err.message);
 }
 
 // Ensure premium_user folder exists in backend/uploads
-const premiumUserDir = path.join(__dirname, 'uploads', 'premium_users');
-if (!fs.existsSync(premiumUserDir)) {
-    fs.mkdirSync(premiumUserDir, { recursive: true });
+const premiumUserDir = process.env.NODE_ENV === 'production' 
+    ? path.join('/tmp', 'uploads', 'premium_users') 
+    : path.join(__dirname, 'uploads', 'premium_users');
+
+try {
+    if (!fs.existsSync(premiumUserDir)) {
+        fs.mkdirSync(premiumUserDir, { recursive: true });
+    }
+} catch (err) {
+    console.warn('⚠️  Could not create premium users directory:', err.message);
 }
 
 // Serve uploaded content static files

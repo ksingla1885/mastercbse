@@ -20,7 +20,8 @@ const AdminDashboard = () => {
 
     const loadDashboardData = async () => {
         try {
-            const response = await fetch('http://localhost:3000/api/admin/dashboard/stats', {
+            const baseUrl = import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:3000/api';
+            const response = await fetch(`${baseUrl}/admin/dashboard/stats`, {
                 credentials: 'include'
             });
 
@@ -44,7 +45,8 @@ const AdminDashboard = () => {
 
     const handleLogout = async () => {
         try {
-            await fetch('http://localhost:3000/api/auth/admin/logout', {
+            const baseUrl = import.meta.env.MODE === 'production' ? '/api/auth' : 'http://localhost:3000/api/auth';
+            await fetch(`${baseUrl}/admin/logout`, {
                 method: 'POST',
                 credentials: 'include'
             });
@@ -63,7 +65,8 @@ const AdminDashboard = () => {
         }
 
         try {
-            const response = await fetch('http://localhost:3000/api/admin/dummy-data', {
+            const baseUrl = import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:3000/api';
+            const response = await fetch(`${baseUrl}/admin/dummy-data`, {
                 method: 'DELETE',
                 credentials: 'include'
             });

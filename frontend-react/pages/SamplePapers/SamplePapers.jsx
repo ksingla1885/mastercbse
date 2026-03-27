@@ -30,7 +30,8 @@ const SamplePapers = () => {
             if (selectedSubject) params.append('subject', selectedSubject);
             params.append('contentType', 'SAMPLE_PAPER');
 
-            const res = await fetch(`http://localhost:3000/api/content?${params}`);
+            const baseUrl = import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:3000/api';
+            const res = await fetch(`${baseUrl}/content?${params}`);
             const data = await res.json();
             if (data.success) {
                 setPapers(data.content || []);

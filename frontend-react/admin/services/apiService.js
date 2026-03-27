@@ -1,6 +1,8 @@
 class AdminApiService {
     constructor() {
-        this.baseUrl = 'http://localhost:3000/api/admin';
+        this.baseUrl = import.meta.env.MODE === 'production' 
+            ? '/api/admin' 
+            : 'http://localhost:3000/api/admin';
     }
 
     async request(endpoint, options = {}) {

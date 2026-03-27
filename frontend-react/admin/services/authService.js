@@ -1,7 +1,8 @@
 class AdminAuthService {
     async adminLogin(credentials) {
         try {
-            const response = await fetch('http://localhost:3000/api/auth/admin/login', {
+            const baseUrl = import.meta.env.MODE === 'production' ? '/api/auth' : 'http://localhost:3000/api/auth';
+            const response = await fetch(`${baseUrl}/admin/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -39,7 +40,8 @@ class AdminAuthService {
 
     async logout() {
         try {
-            await fetch('http://localhost:3000/api/auth/admin/logout', {
+            const baseUrl = import.meta.env.MODE === 'production' ? '/api/auth' : 'http://localhost:3000/api/auth';
+            await fetch(`${baseUrl}/admin/logout`, {
                 method: 'POST',
                 credentials: 'include'
             });
