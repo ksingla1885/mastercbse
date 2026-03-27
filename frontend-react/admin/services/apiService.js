@@ -1,8 +1,13 @@
 class AdminApiService {
     constructor() {
-        this.baseUrl = import.meta.env.MODE === 'production' 
-            ? '/api/admin' 
-            : 'http://localhost:3000/api/admin';
+        this.baseUrl = (import.meta.env.VITE_API_URL || '') + '/admin';
+        
+        // Fallback for local development if VITE_API_URL is missing
+        if (!import.meta.env.VITE_API_URL) {
+            this.baseUrl = import.meta.env.MODE === 'production' 
+                ? '/api/admin' 
+                : 'http://localhost:3000/api/admin';
+        }
     }
 
     async request(endpoint, options = {}) {

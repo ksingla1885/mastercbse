@@ -20,7 +20,7 @@ const AdminDashboard = () => {
 
     const loadDashboardData = async () => {
         try {
-            const baseUrl = import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:3000/api';
+            const baseUrl = import.meta.env.VITE_API_URL || (import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:3000/api');
             const response = await fetch(`${baseUrl}/admin/dashboard/stats`, {
                 credentials: 'include'
             });
@@ -45,7 +45,10 @@ const AdminDashboard = () => {
 
     const handleLogout = async () => {
         try {
-            const baseUrl = import.meta.env.MODE === 'production' ? '/api/auth' : 'http://localhost:3000/api/auth';
+            let baseUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '/api/auth') : (import.meta.env.MODE === 'production' ? '/api/auth' : 'http://localhost:3000/api/auth');
+            if (import.meta.env.VITE_API_URL && !import.meta.env.VITE_API_URL.endsWith('/auth')) {
+                baseUrl = import.meta.env.VITE_API_URL.replace(/\/$/, '') + '/auth';
+            }
             await fetch(`${baseUrl}/admin/logout`, {
                 method: 'POST',
                 credentials: 'include'
@@ -65,7 +68,7 @@ const AdminDashboard = () => {
         }
 
         try {
-            const baseUrl = import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:3000/api';
+            const baseUrl = import.meta.env.VITE_API_URL || (import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:3000/api');
             const response = await fetch(`${baseUrl}/admin/dummy-data`, {
                 method: 'DELETE',
                 credentials: 'include'

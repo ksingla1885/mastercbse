@@ -1,7 +1,10 @@
 class AdminAuthService {
     async adminLogin(credentials) {
         try {
-            const baseUrl = import.meta.env.MODE === 'production' ? '/api/auth' : 'http://localhost:3000/api/auth';
+            let baseUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '/api/auth') : (import.meta.env.MODE === 'production' ? '/api/auth' : 'http://localhost:3000/api/auth');
+            if (import.meta.env.VITE_API_URL && !import.meta.env.VITE_API_URL.endsWith('/auth')) {
+                baseUrl = import.meta.env.VITE_API_URL.replace(/\/$/, '') + '/auth';
+            }
             const response = await fetch(`${baseUrl}/admin/login`, {
                 method: 'POST',
                 headers: {
@@ -40,7 +43,10 @@ class AdminAuthService {
 
     async logout() {
         try {
-            const baseUrl = import.meta.env.MODE === 'production' ? '/api/auth' : 'http://localhost:3000/api/auth';
+            let baseUrl = import.meta.env.VITE_API_URL ? import.meta.env.VITE_API_URL.replace('/api', '/api/auth') : (import.meta.env.MODE === 'production' ? '/api/auth' : 'http://localhost:3000/api/auth');
+            if (import.meta.env.VITE_API_URL && !import.meta.env.VITE_API_URL.endsWith('/auth')) {
+                baseUrl = import.meta.env.VITE_API_URL.replace(/\/$/, '') + '/auth';
+            }
             await fetch(`${baseUrl}/admin/logout`, {
                 method: 'POST',
                 credentials: 'include'
