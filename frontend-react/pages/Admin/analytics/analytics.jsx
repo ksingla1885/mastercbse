@@ -1,11 +1,15 @@
 // Analytics Dashboard JavaScript - Practical Admin Dashboard
 
-// Initialize Supabase
-const SUPABASE_URL = 'https://phtktcsjrpqwmbdlkfdh.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBodGt0Y3NqcnBxd21iZGxrZmRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzNjUyMDIsImV4cCI6MjA3Njk0MTIwMn0.MvbNf7KdGlqu9a3QYubiZMnP7Yy_4YNE4-YFRLBIR7s';
+// Initialize Supabase - using environment variables provided during build
+const SUPABASE_URL = window.VITE_SUPABASE_URL || '';
+const SUPABASE_ANON_KEY = window.VITE_SUPABASE_ANON_KEY || '';
 
 const { createClient } = supabase;
-const supabaseClient = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = (SUPABASE_URL && SUPABASE_ANON_KEY) ? createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+if (!supabaseClient) {
+    console.warn('⚠️ Supabase credentials not found. Some features may not work.');
+}
 
 // Initialize dashboard
 document.addEventListener('DOMContentLoaded', () => {

@@ -6,9 +6,10 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build": "npm run build:backend && npm run build:frontend",
+    "build": "npm run build:backend && npm run build:frontend && npm run build:public",
     "build:backend": "cd backend && npm install && npx prisma generate",
     "build:frontend": "cd frontend-react && npm install && npm run build",
+    "build:public": "rm -rf public && mkdir public && cp -r frontend-react/dist/* public/",
     "postinstall": "npm run build:backend"
   }
 }

@@ -1,10 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 
-// Default Supabase configuration
+// Default Supabase configuration using environment variables
 const DEFAULT_CONFIG = {
-    supabaseUrl: import.meta.env.VITE_SUPABASE_URL || 'https://phtktcsjrpqwmbdlkfdh.supabase.co',
-    supabaseKey: import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBodGt0Y3NqcnBxd21iZGxrZmRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzNjUyMDIsImV4cCI6MjA3Njk0MTIwMn0.MvbNf7KdGlqu9a3QYubiZMnP7Yy_4YNE4-YFRLBIR7s'
+    supabaseUrl: import.meta.env.VITE_SUPABASE_URL,
+    supabaseKey: import.meta.env.VITE_SUPABASE_ANON_KEY
 };
+
+if (!DEFAULT_CONFIG.supabaseUrl || !DEFAULT_CONFIG.supabaseKey) {
+    console.warn('⚠️ Supply VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY in your .env file');
+}
 
 class AuthService {
     constructor() {

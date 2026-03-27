@@ -1,8 +1,8 @@
 // Application Configuration
 window.appConfig = {
-    // Supabase Configuration
-    supabaseUrl: 'https://phtktcsjrpqwmbdlkfdh.supabase.co',
-    supabaseKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBodGt0Y3NqcnBxd21iZGxrZmRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEzNjUyMDIsImV4cCI6MjA3Njk0MTIwMn0.MvbNf7KdGlqu9a3QYubiZMnP7Yy_4YNE4-YFRLBIR7s',
+    // Supabase Configuration - using generic placeholders
+    supabaseUrl: window.VITE_SUPABASE_URL || '',
+    supabaseKey: window.VITE_SUPABASE_ANON_KEY || '',
     
     // API Configuration
     API_CONFIG: {
