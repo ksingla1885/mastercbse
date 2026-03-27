@@ -577,6 +577,16 @@ app.use('/api/content', contentRoutes);
 // Error handling middleware (must be last)
 app.use(errorHandler);
 
+// Root route for health check
+app.get('/', (req, res) => {
+    res.json({
+        message: 'MasterCBSE Backend API is running',
+        status: 'online',
+        version: '1.0.0',
+        environment: process.env.NODE_ENV || 'development'
+    });
+});
+
 // Start server (only if run directly, not when required/imported)
 if (require.main === module) {
     app.listen(PORT, () => {
