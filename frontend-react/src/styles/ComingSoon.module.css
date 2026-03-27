@@ -1,0 +1,202 @@
+.comingSoonContainer {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+    animation: fadeIn 1s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #ff8c00;
+    margin-bottom: 3rem;
+    letter-spacing: 2px;
+}
+
+.title {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, #fff 0%, #888 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    font-size: 2.5rem;
+    font-weight: 300;
+    color: #ff8c00;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+}
+
+.description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #a0a0a0;
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.timerContainer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.timerItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px border rgba(255, 255, 255, 0.1);
+    min-width: 100px;
+    backdrop-filter: blur(10px);
+}
+
+.number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #777;
+    margin-top: 0.5rem;
+}
+
+.buttonGroup {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.backButton {
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.backButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.notifyButton {
+    padding: 1rem 2.5rem;
+    border-radius: 50px;
+    background: #ff8c00;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(255, 140, 0, 0.2);
+}
+
+.notifyButton:hover {
+    background: #ffa500;
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(255, 140, 0, 0.3);
+}
+
+.backgroundShapes div {
+    position: absolute;
+    filter: blur(80px);
+    z-index: 0;
+    border-radius: 50%;
+}
+
+.shape1 {
+    width: 400px;
+    height: 400px;
+    background: rgba(255, 140, 0, 0.1);
+    top: -100px;
+    right: -100px;
+}
+
+.shape2 {
+    width: 300px;
+    height: 300px;
+    background: rgba(138, 43, 226, 0.1);
+    bottom: -50px;
+    left: -50px;
+}
+
+.shape3 {
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 191, 255, 0.05);
+    top: 50%;
+    left: 10%;
+}
+
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.8rem;
+    }
+
+    .timerContainer {
+        gap: 1rem;
+    }
+
+    .timerItem {
+        min-width: 70px;
+        padding: 1rem;
+    }
+}

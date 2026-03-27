@@ -1,0 +1,251 @@
+/* Java Basics Chapter Specific Styles */
+
+.chapterHero {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    color: white;
+    padding: 6rem 0 4rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.chapterHero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.chapterHero p {
+    font-size: 1.25rem;
+    max-width: 700px;
+    margin: 0 auto;
+    opacity: 0.9;
+    position: relative;
+    z-index: 2;
+}
+
+.chapterSection {
+    padding: 5rem 0;
+}
+
+.bgLight {
+    background-color: #f8f9fa;
+}
+
+.chapterSection h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #2c3e50;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.chapterSection h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, #3498db, #2c3e50);
+    border-radius: 3px;
+}
+
+.contentBox {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    margin-bottom: 2rem;
+}
+
+.featureList {
+    list-style-type: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+
+.featureList li {
+    padding: 0.75rem 0 0.75rem 1.5rem;
+    border-bottom: 1px solid #edf2f7;
+    position: relative;
+}
+
+.featureList li:last-child {
+    border-bottom: none;
+}
+
+.featureList li::before {
+    content: '✓';
+    color: #2ecc71;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.codeExample {
+    margin: 2rem 0;
+    background: #2d3436;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+    color: #ffffff;
+}
+
+.codeExample h4 {
+    color: #ecf0f1;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.codeExample pre {
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Fira Code', 'Courier New', monospace;
+    line-height: 1.5;
+}
+
+.syntaxGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.syntaxCard {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.syntaxCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.syntaxCard i {
+    font-size: 2rem;
+    color: #3498db;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.syntaxCard h3 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.syntaxCard code {
+    background: #2d3436;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    display: block;
+    overflow-x: auto;
+    color: #ffffff;
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    font-family: 'Fira Code', 'Courier New', monospace;
+}
+
+.programsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.programCard {
+    background: white;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.programCard h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.programCard p {
+    color: #4a5568;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.btnShowCode {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+}
+
+.btnShowCode:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.codeContainer {
+    display: none;
+    margin-top: 1rem;
+    background: #2d3436;
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+}
+
+.codeContainer.show {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.footer {
+    background: #f8f9fa;
+    padding: 4rem 0;
+    margin-top: 4rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .chapterHero h1 {
+        font-size: 2.25rem;
+    }
+
+    .syntaxGrid,
+    .programsGrid {
+        grid-template-columns: 1fr;
+    }
+}

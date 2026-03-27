@@ -1,0 +1,204 @@
+/* Science Content Theme */
+.sciencePage {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    background-color: #f8fafc;
+    /* Light slate background */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.hero {
+    background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+    /* Emerald Gradient */
+    color: white;
+    padding: 4rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border-bottom-left-radius: 3rem;
+    border-bottom-right-radius: 3rem;
+    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.2);
+}
+
+.heroContent {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+    margin: 0 auto;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.heroContent h1 {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.heroContent p {
+    font-size: 1.25rem;
+    opacity: 0.95;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.container {
+    max-width: 1200px;
+    margin: -3rem auto 2rem;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 20;
+}
+
+.content {
+    display: grid;
+    gap: 2rem;
+}
+
+.section {
+    background: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px -6px rgba(0, 0, 0, 0.1);
+}
+
+.section h2 {
+    font-size: 1.75rem;
+    color: #065f46;
+    /* Darker Emerald */
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid #34d399;
+    display: inline-block;
+    padding-bottom: 0.5rem;
+}
+
+.section h3 {
+    font-size: 1.35rem;
+    color: #047857;
+    margin-bottom: 1rem;
+    margin-top: 1.5rem;
+}
+
+.section p {
+    line-height: 1.7;
+    color: #334155;
+    margin-bottom: 1rem;
+}
+
+.section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.section li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: #475569;
+}
+
+.section li::before {
+    content: "•";
+    color: #10b981;
+    font-weight: bold;
+    font-size: 1.5rem;
+    position: absolute;
+    left: 0;
+    top: -0.25rem;
+}
+
+.conceptBox {
+    background: #ecfdf5;
+    /* Very light emerald */
+    border-left: 4px solid #10b981;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+}
+
+.practiceSection {
+    background: linear-gradient(to right, #ffffff, #f0fdf4);
+    padding: 2rem;
+    border-radius: 1.5rem;
+    border: 1px solid #bbf7d0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+}
+
+.practiceQuestion {
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.solutionBox {
+    background: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px dashed #cbd5e1;
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.keyPoints {
+    background: #0f172a;
+    color: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    margin-top: 2rem;
+}
+
+.keyPoints h3 {
+    color: #34d399;
+    border-bottom: 1px solid #334155;
+}
+
+.keyPoints p {
+    color: #cbd5e1;
+}
+
+.footer {
+    text-align: center;
+    padding: 2rem;
+    color: #64748b;
+    margin-top: auto;
+    border-top: 1px solid #e2e8f0;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 3rem 1rem;
+        border-radius: 0 0 2rem 2rem;
+    }
+
+    .container {
+        margin-top: -2rem;
+        padding: 0 1rem;
+    }
+
+    .section {
+        padding: 1.5rem;
+    }
+}

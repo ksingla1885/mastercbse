@@ -1,0 +1,149 @@
+.mathPage {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: #1e1b4b;
+    background: #f8fafc;
+    min-height: 100vh;
+}
+
+.hero {
+    background: linear-gradient(135deg, #4338ca 0%, #1e1b4b 100%);
+    color: white;
+    padding: 120px 2rem 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2v-4h4v-2H6zM36 4V0h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    opacity: 0.3;
+}
+
+.heroContent {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: -1px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 1200px;
+    margin: -40px auto 80px;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.chapterGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.chapterCard {
+    background: white;
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.chapterCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(67, 56, 202, 0.1);
+    border-color: rgba(67, 56, 202, 0.2);
+}
+
+.chapterHeader {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.chapterNumber {
+    background: #f0f1ff;
+    color: #4338ca;
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.chapterTitle {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1e1b4b;
+    margin: 0;
+    line-height: 1.3;
+}
+
+.chapterDescription {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.exploreBtn {
+    background: #ffffff;
+    color: #4338ca;
+    border: 2px solid #4338ca;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.exploreBtn:hover {
+    background: #4338ca;
+    color: white;
+}
+
+.footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #ffffff;
+    border-top: 1px solid #f1f5f9;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding-top: 100px;
+    }
+
+    .chapterGrid {
+        grid-template-columns: 1fr;
+    }
+}

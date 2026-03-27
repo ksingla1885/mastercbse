@@ -1,0 +1,375 @@
+/* Registration Page Styles */
+.premium-register-page {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    line-height: 1.5;
+    color: #1f2937;
+    background-color: #f8fafc;
+    min-height: 100vh;
+}
+
+.premium-register-page .registration-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 2rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    min-height: calc(100vh - 4rem);
+    align-items: center;
+}
+
+.premium-register-page .registration-form {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.premium-register-page .registration-header {
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.premium-register-page .registration-header h1 {
+    color: #1a237e;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+}
+
+.premium-register-page .registration-header p {
+    color: #6b7280;
+    font-size: 1.05rem;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+/* Form Elements */
+.premium-register-page .form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.premium-register-page .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.premium-register-page .form-label {
+    display: block;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.premium-register-page .form-control {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #1f2937;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.premium-register-page .form-control:focus {
+    border-color: #4a6cf7;
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.15);
+}
+
+/* Password Input */
+.premium-register-page .password-input {
+    position: relative;
+}
+
+.premium-register-page .toggle-password {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6b7280;
+    cursor: pointer;
+    padding: 0.25rem;
+    background: none;
+    border: none;
+    font-size: 1.1rem;
+    transition: color 0.2s;
+}
+
+.premium-register-page .toggle-password:hover {
+    color: #4a6cf7;
+}
+
+/* Error States */
+.premium-register-page .error-message {
+    color: #ef4444;
+    font-size: 0.8125rem;
+    margin-top: 0.35rem;
+    display: none;
+}
+
+.premium-register-page .form-control.error {
+    border-color: #ef4444;
+    padding-right: 2.5rem;
+}
+
+.premium-register-page .form-control.error+.error-message {
+    display: block;
+}
+
+/* Password Strength */
+.premium-register-page .password-strength {
+    margin-top: 0.75rem;
+}
+
+.premium-register-page .strength-meter {
+    display: flex;
+    gap: 0.25rem;
+    margin-bottom: 0.5rem;
+    height: 4px;
+}
+
+.premium-register-page .strength-segment {
+    flex: 1;
+    background-color: #e5e7eb;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.premium-register-page .strength-text {
+    font-size: 0.8125rem;
+    color: #6b7280;
+}
+
+.premium-register-page .strength-text span {
+    font-weight: 500;
+}
+
+/* Checkbox */
+.premium-register-page .form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+
+.premium-register-page .form-check-input {
+    margin-top: 0.25rem;
+}
+
+.premium-register-page .form-check-label {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+.premium-register-page .form-check-label a {
+    color: #4a6cf7;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.premium-register-page .form-check-label a:hover {
+    text-decoration: underline;
+}
+
+/* Buttons */
+.premium-register-page .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.5rem;
+    transition: all 0.15s ease-in-out;
+    cursor: pointer;
+    border: none;
+}
+
+.premium-register-page .btn-primary {
+    background-color: #4a6cf7;
+    color: white;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.05rem;
+    font-weight: 600;
+}
+
+.premium-register-page .btn-primary:hover {
+    background-color: #3a5bd9;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(74, 108, 247, 0.25);
+}
+
+.premium-register-page .btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Form Actions */
+.premium-register-page .form-actions {
+    margin: 2rem 0 1.5rem;
+}
+
+/* Login Link */
+.premium-register-page .login-link {
+    text-align: center;
+    font-size: 0.9375rem;
+    color: #6b7280;
+}
+
+.premium-register-page .login-link a {
+    color: #4a6cf7;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 0.25rem;
+}
+
+.premium-register-page .login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Illustration */
+.premium-register-page .registration-illustration {
+    padding: 1rem;
+    text-align: center;
+}
+
+.premium-register-page .registration-illustration img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.premium-register-page .registration-illustration h3 {
+    color: #1a237e;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.premium-register-page .registration-illustration ul {
+    list-style: none;
+    text-align: left;
+    max-width: 350px;
+    margin: 0 auto;
+}
+
+.premium-register-page .registration-illustration li {
+    margin-bottom: 1rem;
+    padding-left: 1.75rem;
+    position: relative;
+    color: #1f2937;
+}
+
+.premium-register-page .registration-illustration li:before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #10b981;
+    font-weight: bold;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .premium-register-page .registration-container {
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .premium-register-page .registration-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+        margin: 1rem auto;
+    }
+
+    .premium-register-page .registration-form {
+        order: 2;
+        padding: 1.5rem;
+    }
+
+    .premium-register-page .registration-illustration {
+        order: 1;
+        margin-bottom: 2rem;
+    }
+
+    .premium-register-page .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .premium-register-page .registration-container {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .premium-register-page .registration-illustration {
+        display: none;
+    }
+}
+
+/* Loading State */
+.premium-register-page .btn .spinner-border {
+    display: none;
+    margin-left: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    border: 2px solid white;
+    border-right-color: transparent;
+    border-radius: 50%;
+    animation: spinner 0.75s linear infinite;
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.premium-register-page .btn.loading .btn-text {
+    visibility: hidden;
+}
+
+.premium-register-page .btn.loading .spinner-border {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.premium-register-page .alert {
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.premium-register-page .alert-error {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border-left: 4px solid #dc2626;
+}
+
+.premium-register-page .alert-success {
+    background-color: #f0fdf4;
+    color: #166534;
+    border-left: 4px solid #16a34a;
+}

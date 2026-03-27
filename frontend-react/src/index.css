@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+.header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 1.2rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 80px;
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: 900;
+    background: linear-gradient(45deg, #ffffff, #e0e0e0, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: -1px;
+    position: relative;
+    flex-shrink: 0;
+    margin-right: 3rem;
+}
+
+.logo::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
+    border-radius: 2px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+}
+
+.nav-links a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: 600;
+    font-size: 1rem;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+    min-width: 120px;
+    text-align: center;
+}
+
+.nav-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.6s;
+}
+
+.nav-links a:hover::before {
+    left: 100%;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.nav-links a[href="/premium"],
+.nav-links a[href*="premium"] {
+    background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #fdc830 100%) !important;
+    color: white !important;
+    padding: 1rem 2.8rem !important;
+    border-radius: 50px !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4), 0 0 0 3px rgba(255, 107, 53, 0.1) !important;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    border: 2px solid rgba(255, 255, 255, 0.3) !important;
+    position: relative !important;
+    overflow: hidden !important;
+    animation: premiumGlow 2s ease-in-out infinite alternate !important;
+    min-width: 180px !important;
+    margin-left: 2rem !important;
+    flex-shrink: 0 !important;
+}
+
+@keyframes premiumGlow {
+    0% {
+        box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4), 0 0 0 3px rgba(255, 107, 53, 0.1);
+        transform: scale(1);
+    }
+
+    100% {
+        box-shadow: 0 8px 35px rgba(255, 107, 53, 0.6), 0 0 0 5px rgba(255, 107, 53, 0.2);
+        transform: scale(1.02);
+    }
+}
+
+.nav-links a[href="/premium"]::before,
+.nav-links a[href*="premium"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.8s;
+}
+
+.nav-links a[href="/premium"]:hover::before,
+.nav-links a[href*="premium"]:hover::before {
+    left: 100%;
+}
+
+.nav-links a[href="/premium"]:hover,
+.nav-links a[href*="premium"]:hover {
+    background: linear-gradient(135deg, #ff5722 0%, #f7931e 50%, #ffc107 100%) !important;
+    transform: translateY(-4px) scale(1.05) !important;
+    box-shadow: 0 12px 40px rgba(255, 87, 34, 0.5), 0 0 0 6px rgba(255, 87, 34, 0.3) !important;
+    animation: premiumPulse 1s ease-in-out infinite !important;
+}
+
+@keyframes premiumPulse {
+
+    0%,
+    100% {
+        transform: translateY(-4px) scale(1.05);
+    }
+
+    50% {
+        transform: translateY(-6px) scale(1.08);
+    }
+}
+
+.hero {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 8rem 2rem;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background-color: #e74c3c;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #c0392b;
+}
+
+.classes-overview {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.classes-overview h2 {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #2c3e50;
+}
+
+.classes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.class-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s;
+}
+
+.class-card:hover {
+    transform: translateY(-5px);
+}
+
+.class-card h3 {
+    color: #3498db;
+    margin-bottom: 1rem;
+}
+
+.class-card ul {
+    list-style: none;
+}
+
+.class-card li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.class-card li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+}
+
+.footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+}

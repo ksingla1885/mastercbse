@@ -1,0 +1,57 @@
+.class12-arts-dashboard .subject-option {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+    padding: 15px;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.class12-arts-dashboard .subject-option:hover {
+    background-color: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.class12-arts-dashboard .subject-option i {
+    margin-right: 15px;
+    font-size: 1.5rem;
+    color: #2563eb;
+}
+
+.class12-arts-dashboard .subject-info {
+    flex: 1;
+}
+
+.class12-arts-dashboard .subject-info h3 {
+    margin: 0 0 5px 0;
+    color: #1e293b;
+}
+
+.class12-arts-dashboard .subject-info p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.class12-arts-dashboard .stream-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.class12-arts-dashboard .change-stream {
+    color: #2563eb;
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.class12-arts-dashboard .board-exam-section {
+    background: #f0f9ff;
+    border-left: 4px solid #0ea5e9;
+    padding: 15px;
+    border-radius: 4px;
+    margin: 20px 0;
+}

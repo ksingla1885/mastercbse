@@ -1,0 +1,196 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+// User model for authentication and user management
+model User {
+  id        String   @id @default(uuid()) @db.Uuid
+  email     String   @unique @db.VarChar(255)
+  name      String   @db.VarChar(255)
+  password  String?  @db.VarChar(255) // Optional if using Supabase Auth
+  role      Role     @default(STUDENT)
+  class     Int?     @db.Integer // 9-12
+  stream    Stream?
+  
+  // Timestamps
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  progress  Progress[]
+  bookmarks Bookmark[]
+  notes     Note[]
+  
+  @@map("users")
+}
+
+// Enum for user roles
+enum Role {
+  STUDENT
+  PREMIUM
+  ADMIN
+}
+
+// Enum for streams
+enum Stream {
+  PCM
+  PCB
+  COMMERCE
+  HUMANITIES
+}
+
+// Progress tracking for chapters/topics
+model Progress {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @map("user_id") @db.Uuid
+  subject     String   @db.VarChar(100)
+  chapter     String   @db.VarChar(255)
+  topic       String?  @db.VarChar(255)
+  completed   Boolean  @default(false)
+  percentage  Int      @default(0) @db.Integer // 0-100
+  
+  // Timestamps
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@unique([userId, subject, chapter, topic])
+  @@map("progress")
+}
+
+// Bookmarks for saving important content
+model Bookmark {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @map("user_id") @db.Uuid
+  subject     String   @db.VarChar(100)
+  chapter     String   @db.VarChar(255)
+  topic       String?  @db.VarChar(255)
+  contentType String   @map("content_type") @db.VarChar(50) // 'chapter', 'topic', 'question', etc.
+  contentId   String?  @map("content_id") @db.VarChar(255)
+  title       String   @db.VarChar(500)
+  description String?  @db.Text
+  
+  // Timestamps
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("bookmarks")
+}
+
+// Notes for students
+model Note {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String   @map("user_id") @db.Uuid
+  subject     String   @db.VarChar(100)
+  chapter     String   @db.VarChar(255)
+  topic       String?  @db.VarChar(255)
+  title       String   @db.VarChar(500)
+  content     String   @db.Text
+  
+  // Timestamps
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+  
+  // Relations
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@map("notes")
+}
+
+// Content management for chapters and topics
+model Content {
+  id          String      @id @default(uuid()) @db.Uuid
+  class       Int         @db.Integer
+  stream      Stream?
+  subject     String      @db.VarChar(100)
+  chapter     String?      @db.VarChar(255)
+  topic       String?     @db.VarChar(255)
+  title       String      @db.VarChar(500)
+  description String?     @db.Text
+  contentType ContentType @map("content_type")
+  contentUrl  String?     @map("content_url") @db.Text
+  isPremium   Boolean     @default(false) @map("is_premium")
+  order       Int         @default(0) @db.Integer
+  
+  // Timestamps
+  createdAt   DateTime    @default(now()) @map("created_at")
+  updatedAt   DateTime    @updatedAt @map("updated_at")
+  
+  @@map("content")
+}
+
+// Enum for content types
+enum ContentType {
+  CHAPTER
+  TOPIC
+  VIDEO
+  PDF
+  QUIZ
+  EXERCISE
+  SAMPLE_PAPER
+}
+
+// Analytics tracking
+model Analytics {
+  id          String   @id @default(uuid()) @db.Uuid
+  userId      String?  @map("user_id") @db.Uuid
+  eventType   String   @map("event_type") @db.VarChar(100)
+  eventData   Json?    @map("event_data") @db.JsonB
+  ipAddress   String?  @map("ip_address") @db.VarChar(50)
+  userAgent   String?  @map("user_agent") @db.Text
+  
+  // Timestamps
+  createdAt   DateTime @default(now()) @map("created_at")
+  
+  @@map("analytics")
+}
+
+// Premium subscriptions
+model Subscription {
+  id          String           @id @default(uuid()) @db.Uuid
+  userId      String           @unique @map("user_id") @db.Uuid
+  planType    PlanType         @map("plan_type")
+  status      SubscriptionStatus
+  startDate   DateTime         @map("start_date")
+  endDate     DateTime         @map("end_date")
+  amount      Decimal          @db.Decimal(10, 2)
+  currency    String           @default("INR") @db.VarChar(3)
+  
+  // Payment details
+  paymentId   String?          @map("payment_id") @db.VarChar(255)
+  orderId     String?          @map("order_id") @db.VarChar(255)
+  
+  // Timestamps
+  createdAt   DateTime         @default(now()) @map("created_at")
+  updatedAt   DateTime         @updatedAt @map("updated_at")
+  
+  @@map("subscriptions")
+}
+
+// Enum for plan types
+enum PlanType {
+  MONTHLY
+  QUARTERLY
+  YEARLY
+}
+
+// Enum for subscription status
+enum SubscriptionStatus {
+  ACTIVE
+  EXPIRED
+  CANCELLED
+  PENDING
+}

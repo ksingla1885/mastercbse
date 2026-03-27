@@ -1,0 +1,24 @@
+.global-back-btn {
+    background: transparent;
+    color: #059669;
+    border: 2px solid #059669;
+    padding: 0.6rem 2rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-family: 'Outfit', 'Inter', sans-serif;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 140px;
+    margin: 1.5rem 0;
+}
+
+.global-back-btn:hover {
+    background: #059669;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(5, 150, 105, 0.2);
+}

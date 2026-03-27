@@ -1,0 +1,202 @@
+.ssPage {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: #1e293b;
+    background: #fdfaf6;
+    min-height: 100vh;
+}
+
+.hero {
+    background: linear-gradient(135deg, #d97706 0%, #7c2d12 100%);
+    color: white;
+    padding: 120px 2rem 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+    z-index: 1;
+}
+
+.heroContent {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: -1.5px;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero p {
+    font-size: 1.25rem;
+    opacity: 0.95;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1400px;
+    margin: -50px auto 100px;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.categorySection {
+    margin-bottom: 6rem;
+}
+
+.categoryHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 2px solid #fed7aa;
+}
+
+.categoryTitle {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #451a03;
+    letter-spacing: -0.5px;
+}
+
+.categoryIcon {
+    width: 16px;
+    height: 16px;
+    background: #f59e0b;
+    border-radius: 4px;
+    transform: rotate(45deg);
+}
+
+.chapterGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 2.5rem;
+}
+
+.chapterCard {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 32px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -1px rgba(0, 0, 0, 0.01);
+    border: 1px solid rgba(124, 45, 18, 0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.chapterCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    transition: background 0.3s ease;
+}
+
+.chapterCard:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 30px 60px -12px rgba(124, 45, 18, 0.12);
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.chapterCard:hover::before {
+    background: #f59e0b;
+}
+
+.chapterInfo {
+    margin-bottom: 2rem;
+}
+
+.chapterTag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #b45309;
+    background: #fff7ed;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.chapterTitle {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #451a03;
+    margin-bottom: 1rem;
+    line-height: 1.3;
+}
+
+.chapterSummary {
+    color: #64748b;
+    font-size: 1.05rem;
+    line-height: 1.6;
+}
+
+.exploreBtn {
+    margin-top: auto;
+    background: #ffffff;
+    color: #92400e;
+    border: 2px solid #fed7aa;
+    padding: 1rem;
+    border-radius: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.exploreBtn:hover {
+    background: #f59e0b;
+    color: white;
+    border-color: #f59e0b;
+}
+
+.footer {
+    text-align: center;
+    padding: 6rem 2rem;
+    background: #fffaf5;
+    border-top: 1px solid #fed7aa;
+    color: #92400e;
+}
+
+@media (max-width: 1024px) {
+    .chapterGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .chapterGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-top: 100px;
+    }
+
+    .categoryTitle {
+        font-size: 1.8rem;
+    }
+}

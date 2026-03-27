@@ -1,0 +1,193 @@
+:root {
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --error-color: #ef4444;
+    --text-color: #1f2937;
+    --text-light: #6b7280;
+    --bg-color: #f9fafb;
+    --card-bg: #ffffff;
+    --input-bg: #f3f4f6;
+    --input-border: #e5e7eb;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.2s ease-in-out;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+#login-container {
+    background: var(--card-bg);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-lg);
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 28rem;
+    position: relative;
+    transition: var(--transition);
+}
+
+h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.form-description {
+    color: var(--text-light);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1rem;
+}
+
+/* Info Message */
+.info-message {
+    background: rgba(79, 70, 229, 0.05);
+    color: var(--primary-color);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(79, 70, 229, 0.1);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.info-message p {
+    margin: 0;
+}
+
+/* Error Message */
+.error-message {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error-color);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1.5rem;
+    font-size: 0.9rem;
+    display: none;
+}
+
+.error-message.show {
+    display: block;
+}
+
+/* Form */
+#admin-login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--input-border);
+    border-radius: 0.5rem;
+    background: var(--input-bg);
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+button[type="submit"] {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+    margin-top: 0.5rem;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* Links */
+.links {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--input-border);
+}
+
+.links a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.links a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* Admin Badge */
+.admin-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: var(--shadow-sm);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    #login-container {
+        padding: 1.5rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .form-description {
+        font-size: 0.95rem;
+    }
+}

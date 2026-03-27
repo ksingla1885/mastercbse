@@ -1,0 +1,198 @@
+.englishPage {
+    font-family: 'Outfit', 'Inter', sans-serif;
+    color: #1e1b4b;
+    background: #f8faff;
+    min-height: 100vh;
+}
+
+.hero {
+    background: linear-gradient(135deg, #6366f1 0%, #4338ca 100%);
+    color: white;
+    padding: 120px 2rem 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.heroContent {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1rem;
+    letter-spacing: -1.5px;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    opacity: 0.95;
+    margin-bottom: 2.2rem;
+}
+
+.samplePaperBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2.5px solid #ffffff;
+    padding: 0.85rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1.15rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+.samplePaperBtn:hover {
+    background: #ffffff;
+    color: #4338ca;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.container {
+    max-width: 1400px;
+    margin: -50px auto 100px;
+    padding: 0 2rem;
+    position: relative;
+    z-index: 10;
+}
+
+.grammarBanner {
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+    padding: 4rem;
+    border-radius: 40px;
+    margin-bottom: 5rem;
+    color: white;
+    box-shadow: 0 30px 60px rgba(79, 70, 229, 0.2);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.grammarContent h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.grammarContent p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+    margin-bottom: 2.5rem;
+}
+
+.grammarBtn {
+    background: white;
+    color: #4f46e5;
+    padding: 1.2rem 3rem;
+    border-radius: 20px;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.grammarBtn:hover {
+    transform: scale(1.05);
+    background: #f8faff;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.categorySection {
+    margin-bottom: 6rem;
+}
+
+.categoryHeader {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid #e0e7ff;
+}
+
+.categoryTitle {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #312e81;
+}
+
+.chapterGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2.5rem;
+}
+
+.chapterCard {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 30px;
+    box-shadow: 0 4px 20px rgba(67, 56, 202, 0.05);
+    border: 1px solid rgba(99, 102, 241, 0.05);
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.chapterCard:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(67, 56, 202, 0.1);
+}
+
+.chapterTag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: #4f46e5;
+    background: #eef2ff;
+    padding: 0.5rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+}
+
+.chapterTitle {
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #1e1b4b;
+    margin-bottom: 0.8rem;
+}
+
+.chapterSummary {
+    color: #4b5563;
+    font-size: 1rem;
+}
+
+.exploreBtn {
+    margin-top: auto;
+    background: #ffffff;
+    color: #4338ca;
+    border: 2px solid #c7d2fe;
+    padding: 1rem;
+    border-radius: 18px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.exploreBtn:hover {
+    background: #6366f1;
+    color: white;
+}
+
+.footer {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: #ffffff;
+    border-top: 1px solid #e0e7ff;
+}

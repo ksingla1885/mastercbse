@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap');
+
+:root {
+    --bg-dark: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --input-bg: rgba(15, 23, 42, 0.6);
+    --border-color: rgba(148, 163, 184, 0.1);
+    --accent-primary: #8b5cf6;
+    --accent-secondary: #3b82f6;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --error-bg: rgba(239, 68, 68, 0.1);
+    --error-text: #ef4444;
+}
+
+.admin-login-container {
+    min-height: 100vh;
+    width: 100%;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--text-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-dark);
+}
+
+/* Background Blobs for Atmosphere */
+.admin-login-container::before,
+.admin-login-container::after {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    filter: blur(80px);
+    z-index: 0;
+    opacity: 0.5;
+    animation: float 10s infinite alternate ease-in-out;
+}
+
+.admin-login-container::before {
+    background: radial-gradient(circle, var(--accent-primary), transparent 70%);
+    top: -100px;
+    left: -100px;
+}
+
+.admin-login-container::after {
+    background: radial-gradient(circle, var(--accent-secondary), transparent 70%);
+    bottom: -100px;
+    right: -100px;
+    animation-delay: -5s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    100% {
+        transform: translate(30px, 30px) scale(1.1);
+    }
+}
+
+.admin-login-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-color);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    padding: 3rem;
+    width: 100%;
+    max-width: 420px;
+    z-index: 10;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.admin-login-card:hover {
+    transform: translateY(-5px);
+}
+
+.admin-login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.admin-login-header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #fff, #cbd5e1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.5px;
+}
+
+.admin-login-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+}
+
+.admin-login-container .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.admin-login-container .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.admin-login-container .form-group input {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--input-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.admin-login-container .form-group input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+    background: rgba(30, 41, 59, 0.8);
+}
+
+.form-group input::placeholder {
+    color: rgba(148, 163, 184, 0.5);
+}
+
+.error-message {
+    background: var(--error-bg);
+    color: var(--error-text);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.admin-login-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+    margin-top: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-login-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+}
+
+.admin-login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(139, 92, 246, 0.4);
+}
+
+.admin-login-btn:hover::before {
+    left: 100%;
+}
+
+.admin-login-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.admin-login-footer {
+    margin-top: 2rem;
+    text-align: center;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1.5rem;
+}
+
+.admin-login-footer p {
+    margin: 0;
+}
+
+.admin-login-footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s ease;
+}
+
+.admin-login-footer a:hover {
+    color: var(--accent-primary);
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+    .admin-login-card {
+        margin: 1rem;
+        padding: 2rem;
+    }
+
+    .admin-login-header h1 {
+        font-size: 1.75rem;
+    }
+}
