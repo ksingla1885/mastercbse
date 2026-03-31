@@ -196,30 +196,40 @@ class AdminController {
                 });
             }
 
+            console.log('Fetching content with filters:', { search, className, subject, stream: req.query.stream, type });
+
             let query = supabase
                 .from('content')
-                .select('*', { count: 'exact' })
-                .range(offset, offset + limitNum - 1)
-                .order('created_at', { ascending: false });
+                .select('*', { count: 'exact' });
 
-            // Apply filters
+            // Apply filters first
             if (search) {
                 query = query.or(`title.ilike.%${search}%,description.ilike.%${search}%`);
             }
             if (className) {
                 query = query.eq('class', parseInt(className));
             }
-            if (subject) {
+            if (subject && subject !== 'all') {
                 query = query.eq('subject', subject);
             }
-            if (req.query.stream) {
-                query = query.eq('stream', req.query.stream);
+            if (req.query.stream && req.query.stream !== 'all') {
+                if (req.query.stream === 'Common (All Streams)' || req.query.stream === '') {
+                    query = query.is('stream', null);
+                } else {
+                    query = query.eq('stream', req.query.stream);
+                }
             }
             if (type) {
                 query = query.eq('content_type', type.toUpperCase());
             }
 
+            // Apply pagination and sorting last
+            query = query
+                .order('created_at', { ascending: false })
+                .range(offset, offset + limitNum - 1);
+
             const { data: content, error, count } = await query;
+            console.log(`Query count: ${count}, Data matched: ${content ? content.length : 0} items`);
 
             if (error) {
                 // Handle case where content table doesn't exist

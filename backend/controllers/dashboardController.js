@@ -45,13 +45,16 @@ const SUBJECT_MAPPING = {
   },
   'commerce': {
     name: 'Commerce Stream',
-    subjects: ['Accounts', 'Business Studies', 'Economics']
+    subjects: ['Accountancy', 'Business Studies', 'Economics']
   },
   'humanities': {
     name: 'Humanities Stream',
-    subjects: ['English', 'History', 'Geography', 'Political Science']
+    subjects: ['History', 'Political Science', 'Geography', 'Sociology']
   }
 };
+
+// Common subjects for class 11-12
+const COMMON_SUBJECTS = ['English', 'Physical Education'];
 
 /**
  * Get dashboard HTML file path based on class and stream
@@ -95,7 +98,12 @@ function getDashboardRoute(userClass, stream = null) {
  */
 function getSubjectsForStream(stream) {
   const normalizedStream = (stream || '').toLowerCase().trim();
-  return SUBJECT_MAPPING[normalizedStream] || SUBJECT_MAPPING['commerce'];
+  const config = SUBJECT_MAPPING[normalizedStream] || SUBJECT_MAPPING['commerce'];
+  
+  return {
+    ...config,
+    subjects: [...config.subjects, ...COMMON_SUBJECTS]
+  };
 }
 
 /**

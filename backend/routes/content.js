@@ -13,7 +13,12 @@ router.get('/', async (req, res) => {
                 ...(chapter && { chapter }),
                 ...(contentType && { contentType }),
                 ...(className && { class: parseInt(className) }),
-                ...(stream && { stream }),
+                ...(stream ? { 
+                    OR: [
+                        { stream },
+                        { stream: null }
+                    ]
+                } : {}),
                 ...(isPremium !== undefined && { isPremium: isPremium === 'true' }),
             },
             orderBy: [

@@ -130,13 +130,14 @@ const ContentManagement = () => {
         setSelectedSubject('all');
     };
 
-    const STREAMS = ['Arts', 'Commerce', 'Science (Medical)', 'Science (Non-Medical)'];
+    const STREAMS = ['Common (All Streams)', 'Arts', 'Commerce', 'Science (Medical)', 'Science (Non-Medical)'];
 
     const SUBJECTS_BY_STREAM = {
-        'Arts': ['History', 'Geography', 'Political Science', 'Sociology', 'Psychology', 'English'],
-        'Commerce': ['Accountancy', 'Business Studies', 'Economics', 'Mathematics', 'English'],
-        'Science (Medical)': ['Physics', 'Chemistry', 'Biology', 'English'],
-        'Science (Non-Medical)': ['Physics', 'Chemistry', 'Mathematics', 'English', 'Computer Science'],
+        'Common (All Streams)': ['English', 'Physical Education'],
+        'Arts': ['History', 'Geography', 'Political Science', 'Psychology', 'English', 'Physical Education'],
+        'Commerce': ['Accountancy', 'Business Studies', 'Economics', 'Mathematics', 'English', 'Physical Education'],
+        'Science (Medical)': ['Physics', 'Chemistry', 'Biology', 'English', 'Physical Education'],
+        'Science (Non-Medical)': ['Physics', 'Chemistry', 'Mathematics', 'English', 'Computer Science', 'Physical Education'],
         'General': ['Mathematics', 'Science', 'Social Science', 'English', 'Computer Applications']
     };
 
@@ -204,7 +205,7 @@ const ContentManagement = () => {
 
         const classNum = parseInt(formData.class);
         if (classNum >= 11 && !formData.stream) {
-            return { valid: false, message: 'Please select a stream for class 11 or 12' };
+            return { valid: false, message: 'Please select a stream or "Common (All Streams)" for class 11 or 12' };
         }
 
         if (uploadType === 'file' && !selectedFile && !editingContent) {
@@ -290,7 +291,12 @@ const ContentManagement = () => {
                 // Append all fields
                 Object.keys(item).forEach(key => {
                     if (!['tempId', 'file', 'uploadType', 'subjects'].includes(key)) {
-                        data.append(key, item[key]);
+                        let value = item[key];
+                        // Map "Common" to empty string for backend null conversion
+                        if (key === 'stream' && value === 'Common (All Streams)') {
+                            value = '';
+                        }
+                        data.append(key, value);
                     }
                 });
 
@@ -362,7 +368,12 @@ const ContentManagement = () => {
             // Create FormData object
             const data = new FormData();
             Object.keys(formData).forEach(key => {
-                data.append(key, formData[key]);
+                let value = formData[key];
+                // Map "Common" to empty string for backend null conversion
+                if (key === 'stream' && value === 'Common (All Streams)') {
+                    value = '';
+                }
+                data.append(key, value);
             });
 
             if (uploadType === 'file' && selectedFile) {

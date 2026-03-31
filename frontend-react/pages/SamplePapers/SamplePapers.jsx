@@ -66,7 +66,8 @@ const SamplePapers = () => {
             filtered = filtered.filter(p => String(p.class) === activeClassView);
         }
         if (selectedStream) {
-            filtered = filtered.filter(p => p.stream === selectedStream.dbName);
+            // When a stream is selected, include papers for that stream AND papers with no stream (common)
+            filtered = filtered.filter(p => p.stream === selectedStream.dbName || !p.stream);
         }
         if (selectedSubject) {
             filtered = filtered.filter(p => p.subject === selectedSubject);
