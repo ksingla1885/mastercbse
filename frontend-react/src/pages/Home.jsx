@@ -94,11 +94,11 @@ const Home = () => {
                         <h3>Comprehensive Resources</h3>
                         <p>Access notes, sample papers, and video lectures for all subjects from Class 1 to 12.</p>
                     </div>
-                    <div className={styles.featureCard}>
+                    {/* <div className={styles.featureCard}>
                         <i className="fas fa-chalkboard-teacher" style={{ fontSize: '3rem', color: '#ec4899', marginBottom: '1.5rem' }}></i>
                         <h3>Expert Guidance</h3>
                         <p>Curated content by experienced educators to help you ace your exams with confidence.</p>
-                    </div>
+                    </div> */}
                     <div className={styles.featureCard}>
                         <i className="fas fa-crown" style={{ fontSize: '3rem', color: '#f59e0b', marginBottom: '1.5rem' }}></i>
                         <h3>Premium Features</h3>
