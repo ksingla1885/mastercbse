@@ -1,37 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Navbar from '../../src/components/Navbar';
 import styles from './SamplePapers.module.css';
 
 const SamplePapers = () => {
-    const [searchParams] = useSearchParams();
     const navigate = useNavigate();
-
-    const classParam = searchParams.get('class') || '';
-    const subjectParam = searchParams.get('subject') || '';
 
     const [papers, setPapers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [selectedClass, setSelectedClass] = useState(classParam);
-    const [selectedSubject, setSelectedSubject] = useState(subjectParam);
+    
+    // States for view management
+    const [activeClassView, setActiveClassView] = useState(null); // '10' or '12' or null
+    const [selectedStream, setSelectedStream] = useState(null);
+    const [selectedSubject, setSelectedSubject] = useState('');
 
+    const STREAMS_12 = [
+        { id: 'Medical', name: 'Medical', dbName: 'Science (Medical)', icon: '🩺' },
+        { id: 'Non-Medical', name: 'Non-Medical', dbName: 'Science (Non-Medical)', icon: '🧪' },
+        { id: 'Commerce', name: 'Commerce', dbName: 'Commerce', icon: '📊' },
+        { id: 'Humanities', name: 'Humanities', dbName: 'Arts', icon: '🏛️' }
+    ];
+
+    const SUBJECTS_10 = ['Mathematics', 'Science', 'Social Science', 'English', 'Computer Applications'];
+    
     useEffect(() => {
         window.scrollTo(0, 0);
         fetchPapers();
-    }, [selectedClass, selectedSubject]);
+    }, []);
 
     const fetchPapers = async () => {
         setLoading(true);
         setError(null);
         try {
-            const params = new URLSearchParams();
-            if (selectedClass) params.append('class', selectedClass);
-            if (selectedSubject) params.append('subject', selectedSubject);
-            params.append('contentType', 'SAMPLE_PAPER');
-
             const baseUrl = import.meta.env.VITE_API_URL || (import.meta.env.MODE === 'production' ? '/api' : 'http://localhost:3000/api');
-            const res = await fetch(`${baseUrl}/content?${params}`);
+            const res = await fetch(`${baseUrl}/content?contentType=SAMPLE_PAPER&limit=200`);
             const data = await res.json();
             if (data.success) {
                 setPapers(data.content || []);
@@ -51,32 +54,47 @@ const SamplePapers = () => {
         else alert('Paper link not available yet.');
     };
 
+    const resetFilters = () => {
+        setActiveClassView(null);
+        setSelectedStream(null);
+        setSelectedSubject('');
+    };
+
+    const getFilteredPapers = () => {
+        let filtered = papers;
+        if (activeClassView) {
+            filtered = filtered.filter(p => String(p.class) === activeClassView);
+        }
+        if (selectedStream) {
+            filtered = filtered.filter(p => p.stream === selectedStream.dbName);
+        }
+        if (selectedSubject) {
+            filtered = filtered.filter(p => p.subject === selectedSubject);
+        }
+        return filtered;
+    };
+
+    const filteredPapers = getFilteredPapers();
+    const currentSubjects = activeClassView === '10' ? SUBJECTS_10 : [...new Set(filteredPapers.map(p => p.subject))].sort();
+
     return (
         <div className={styles.page}>
             <Navbar />
 
-            {/* Hero */}
             <header className={styles.hero}>
                 <div className={styles.heroContent}>
-                    <div className={styles.badge}>📄 CBSE Practice</div>
+                    <div className={styles.badge}>📄 CBSE Practice Hub</div>
                     <h1>Sample Papers</h1>
-                    <p>
-                        {selectedClass && selectedSubject
-                            ? `Class ${selectedClass} · ${selectedSubject}`
-                            : selectedClass
-                            ? `Class ${selectedClass} — All Subjects`
-                            : 'Browse all CBSE sample papers'}
-                    </p>
+                    <p>Select your class and stream to browse curated sample papers.</p>
                 </div>
                 <div className={styles.heroWave} />
             </header>
 
-            {/* Content */}
             <main className={styles.container}>
                 {loading ? (
                     <div className={styles.loadingState}>
                         <div className={styles.spinner} />
-                        <p>Loading sample papers...</p>
+                        <p>Fetching papers...</p>
                     </div>
                 ) : error ? (
                     <div className={styles.errorState}>
@@ -84,74 +102,115 @@ const SamplePapers = () => {
                         <p>{error}</p>
                         <button onClick={fetchPapers} className={styles.retryBtn}>Retry</button>
                     </div>
-                ) : papers.length === 0 ? (
-                    <div className={styles.emptyState}>
-                        <div className={styles.emptyIcon}>📋</div>
-                        <h3>No Sample Papers Found</h3>
-                        <p>
-                            We couldn't find any sample papers for this subject yet.
-                            Please check back later or contact support if you believe this is an error.
-                        </p>
+                ) : !activeClassView ? (
+                    /* INITIAL VIEW: CLASS SELECTION CARDS */
+                    <div className={styles.classSelectorGrid}>
+                        <div className={styles.selectorCard} onClick={() => setActiveClassView('10')}>
+                            <div className={styles.selectorIcon}>🎓</div>
+                            <h2>Class 10</h2>
+                            <p>Secondary Education Sample Papers</p>
+                            <span className={styles.selectBtn}>Explore All</span>
+                        </div>
+
+                        <div className={styles.selectorCard} onClick={() => setActiveClassView('12')}>
+                            <div className={styles.selectorIcon}>📜</div>
+                            <h2>Class 12</h2>
+                            <p>Senior Secondary Education Papers</p>
+                            <span className={styles.selectBtn}>Explore All</span>
+                        </div>
                     </div>
                 ) : (
-                    <>
-                        <div className={styles.resultsHeader}>
-                            <span className={styles.resultsCount}>
-                                {papers.length} paper{papers.length !== 1 ? 's' : ''} found
-                            </span>
+                    /* DRILL DOWN VIEW */
+                    <div className={styles.drillDownContainer}>
+                        <button className={styles.backToSelect} onClick={resetFilters}>
+                            ← Back to Classes
+                        </button>
+
+                        <div className={styles.drillHeader}>
+                            <div className={styles.drillTitleGroup}>
+                                <span className={styles.classLabel}>CLASS {activeClassView}</span>
+                                <h2>{selectedStream ? `${selectedStream.name} Stream` : 'Select Stream'}</h2>
+                            </div>
+                            {(activeClassView === '10' || selectedStream) && (
+                                <div className={styles.drillFilters}>
+                                    <select 
+                                        value={selectedSubject} 
+                                        onChange={(e) => setSelectedSubject(e.target.value)}
+                                        className={styles.subjectSelect}
+                                    >
+                                        <option value="">All Subjects</option>
+                                        {currentSubjects.map(sub => (
+                                            <option key={sub} value={sub}>{sub}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                            )}
                         </div>
-                        <div className={styles.grid}>
-                            {papers.map((paper, index) => (
-                                <div key={paper.id || index} className={styles.card}>
-                                    <div className={styles.cardTop}>
-                                        <div className={styles.cardIcon}>📄</div>
-                                        <div className={styles.cardMeta}>
-                                            {paper.class && (
-                                                <span className={styles.tag}>Class {paper.class}</span>
-                                            )}
-                                            {paper.subject && (
-                                                <span className={`${styles.tag} ${styles.tagSubject}`}>
-                                                    {paper.subject}
-                                                </span>
-                                            )}
-                                            {paper.is_premium && (
-                                                <span className={`${styles.tag} ${styles.tagPremium}`}>
-                                                    ⭐ Premium
-                                                </span>
-                                            )}
-                                        </div>
+
+                        {activeClassView === '12' && !selectedStream ? (
+                            /* CLASS 12 STREAM SELECTION */
+                            <div className={styles.streamGrid}>
+                                {STREAMS_12.map(stream => (
+                                    <div 
+                                        key={stream.id} 
+                                        className={styles.streamCard}
+                                        onClick={() => setSelectedStream(stream)}
+                                    >
+                                        <div className={styles.streamIcon}>{stream.icon}</div>
+                                        <h3>{stream.name}</h3>
+                                        <p>Find {stream.name} papers</p>
+                                        <span className={styles.streamBtn}>Open Stream</span>
                                     </div>
-
-                                    <h3 className={styles.cardTitle}>{paper.title}</h3>
-                                    {paper.description && (
-                                        <p className={styles.cardDesc}>{paper.description}</p>
-                                    )}
-
-                                    <div className={styles.cardFooter}>
-                                        {paper.created_at && (
-                                            <span className={styles.cardDate}>
-                                                🗓️ {new Date(paper.created_at).toLocaleDateString('en-IN', {
-                                                    year: 'numeric', month: 'short', day: 'numeric'
-                                                })}
-                                            </span>
-                                        )}
-                                        <button
-                                            className={styles.downloadBtn}
-                                            onClick={() => handleOpenPaper(paper.content_url || paper.contentUrl)}
-                                        >
-                                            Open Paper ↗
+                                ))}
+                            </div>
+                        ) : (
+                            /* PAPERS LIST */
+                            <div className={styles.resultsArea}>
+                                {selectedStream && (
+                                    <div className={styles.streamBreadcrumb}>
+                                        <button onClick={() => { setSelectedStream(null); setSelectedSubject(''); }}>
+                                            <i className="fas fa-exchange-alt"></i> Change Stream
                                         </button>
                                     </div>
-                                </div>
-                            ))}
-                        </div>
-                    </>
+                                )}
+                                
+                                {filteredPapers.length === 0 ? (
+                                    <div className={styles.cardEmptyState}>
+                                        <div className={styles.emptyIcon}>📂</div>
+                                        <h3>No Papers Found</h3>
+                                        <p>We couldn't find any papers for {selectedSubject || 'this selection'}. Try another filter.</p>
+                                    </div>
+                                ) : (
+                                    <div className={styles.internalGrid}>
+                                        {filteredPapers.map((paper) => (
+                                            <div key={paper.id} className={styles.paperItem}>
+                                                <div className={styles.paperIcon}>📄</div>
+                                                <div className={styles.paperContent}>
+                                                    <h4>{paper.title}</h4>
+                                                    <div className={styles.paperTags}>
+                                                        <span className={styles.miniTag}>{paper.subject}</span>
+                                                        {paper.is_premium && <span className={styles.premiumTag}>⭐ PREMIUM</span>}
+                                                    </div>
+                                                </div>
+                                                <button 
+                                                    className={styles.itemOpenBtn}
+                                                    onClick={() => handleOpenPaper(paper.content_url || paper.contentUrl)}
+                                                >
+                                                    View
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
                 )}
             </main>
 
             <footer className={styles.footer}>
-                <button className={styles.backBtn} onClick={() => navigate(-1)}>
-                    ← Go Back
+                <button className={styles.backBtn} onClick={() => navigate('/home')}>
+                    ← Back to Dashboard
                 </button>
                 <p>© 2024 mastercbse. All rights reserved.</p>
             </footer>

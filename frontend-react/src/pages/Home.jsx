@@ -44,17 +44,7 @@ const Home = () => {
     };
 
     const classesData = [
-        { name: 'Class 1', subjects: ['English', 'Hindi', 'Mathematics', 'EVS'] },
-        { name: 'Class 2', subjects: ['English', 'Hindi', 'Mathematics', 'EVS'] },
-        { name: 'Class 3', subjects: ['English', 'Hindi', 'Mathematics', 'EVS'] },
-        { name: 'Class 4', subjects: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Studies'] },
-        { name: 'Class 5', subjects: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Studies'] },
-        { name: 'Class 6', subjects: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Science'] },
-        { name: 'Class 7', subjects: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Science'] },
-        { name: 'Class 8', subjects: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Science'] },
-        { name: 'Class 9', subjects: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Science', 'Computer Applications'] },
-        { name: 'Class 10', subjects: ['English', 'Hindi', 'Mathematics', 'Science', 'Social Science', 'Computer Applications'] },
-        { name: 'Class 11', subjects: ['Medical', 'Non-Medical', 'Commerce', 'Humanities'] },
+        { name: 'Class 10', subjects: ['English', 'Mathematics', 'Science', 'Social Science', 'Computer Applications'] },
         { name: 'Class 12', subjects: ['Medical', 'Non-Medical', 'Commerce', 'Humanities'] },
     ];
 

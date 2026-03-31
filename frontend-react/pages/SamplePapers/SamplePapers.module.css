@@ -309,32 +309,324 @@
     color: white;
 }
 
-/* ── RESPONSIVE ── */
+
+/* ── DRILL DOWN NAVIGATION ── */
+.classSelectorGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.selectorCard {
+    background: white;
+    padding: 4rem 2rem;
+    border-radius: 40px;
+    text-align: center;
+    border: 2px solid #ecfdf5;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    box-shadow: 0 15px 35px rgba(5, 150, 105, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selectorCard:hover {
+    transform: translateY(-12px);
+    border-color: #059669;
+    box-shadow: 0 30px 60px rgba(5, 150, 105, 0.15);
+}
+
+.selectorIcon {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    background: #f0fdf4;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+.selectorCard h2 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    margin: 0 0 0.8rem;
+    color: #064e3b;
+}
+
+.selectorCard p {
+    color: #4b5563;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.selectBtn {
+    background: #059669;
+    color: white;
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.selectorCard:hover .selectBtn {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(5, 150, 105, 0.3);
+}
+
+.drillDownContainer {
+    animation: slideUp 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.backToSelect {
+    background: #ecfdf5;
+    border: none;
+    color: #059669;
+    font-weight: 800;
+    cursor: pointer;
+    margin-bottom: 2.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+}
+
+.backToSelect:hover {
+    background: #059669;
+    color: white;
+}
+
+.drillHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid #f0fdf4;
+    padding-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.drillTitleGroup h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin: 0.6rem 0 0;
+    color: #064e3b;
+    letter-spacing: -1px;
+}
+
+.classLabel {
+    background: #059669;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 900;
+    padding: 0.4rem 1rem;
+    border-radius: 8px;
+    letter-spacing: 1px;
+}
+
+.subjectSelect {
+    background: white;
+    border: 2px solid #059669;
+    padding: 1rem 2rem;
+    border-radius: 15px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    outline: none;
+    color: #064e3b;
+    min-width: 280px;
+    box-shadow: 0 4px 12px rgba(5, 150, 105, 0.05);
+}
+
+/* ── STREAM SELECTION ── */
+.streamGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.streamCard {
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 35px;
+    text-align: center;
+    border: 2px solid #f0fdf4;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.03);
+}
+
+.streamCard:hover {
+    border-color: #059669;
+    background: #f0fdf4;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(5, 150, 105, 0.1);
+}
+
+.streamIcon {
+    font-size: 3.5rem;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.streamCard h3 {
+    font-size: 1.6rem;
+    font-weight: 900;
+    margin-bottom: 0.8rem;
+    color: #064e3b;
+}
+
+.streamCard p {
+    color: #6b7280;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.streamBtn {
+    background: #ecfdf5;
+    color: #059669;
+    padding: 0.6rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+
+.streamCard:hover .streamBtn {
+    background: #059669;
+    color: white;
+}
+
+.resultsArea {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.streamBreadcrumb {
+    margin-bottom: 2rem;
+}
+
+.streamBreadcrumb button {
+    background: #f1f5f9;
+    border: 2px solid #e2e8f0;
+    padding: 0.6rem 1.5rem;
+    border-radius: 12px;
+    color: #475569;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.streamBreadcrumb button:hover {
+    background: #059669;
+    color: white;
+    border-color: #059669;
+}
+
+/* ── REUSED LIST STYLES ── */
+.internalGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    gap: 1.5rem;
+}
+
+.paperItem {
+    background: white;
+    border: 1px solid #f0fdf4;
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    transition: all 0.3s ease;
+}
+
+.paperItem:hover {
+    border-color: #059669;
+    transform: translateX(8px);
+    box-shadow: 0 12px 24px rgba(5, 150, 105, 0.08);
+}
+
+.paperIcon {
+    font-size: 2rem;
+    background: #f0fdf4;
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.paperContent h4 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #064e3b;
+    margin-bottom: 0.5rem;
+}
+
+/* Existing tags and buttons can stay if they match */
+.premiumTag {
+    background: #fffbeb;
+    color: #d97706;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 0.7rem;
+}
+
+.miniTag {
+    color: #059669;
+    font-weight: 800;
+    font-size: 0.75rem;
+    background: #ecfdf5;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+}
+
+.itemOpenBtn {
+    background: #059669;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 12px;
+    font-weight: 800;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
 @media (max-width: 768px) {
-    .hero {
-        padding: 100px 1.5rem 60px;
-    }
-
-    .filterBar {
+    .drillHeader {
         flex-direction: column;
-        margin: -10px 1rem 2rem;
-        padding: 1.2rem;
+        align-items: flex-start;
     }
-
-    .filterGroup {
+    
+    .subjectSelect {
         width: 100%;
     }
-
-    .clearBtn {
-        width: 100%;
-        text-align: center;
-    }
-
-    .grid {
-        grid-template-columns: 1fr;
-    }
-
-    .container {
-        padding: 0 1rem;
+    
+    .selectorCard {
+        padding: 3rem 1.5rem;
     }
 }

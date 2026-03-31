@@ -65,9 +65,9 @@ const Navbar = () => {
                     <a onClick={() => handleNavClick('#classes', true)}>Classes</a>
                     <button
                         className={styles.premiumBtn}
-                        onClick={() => handleNavClick('/premium')}
+                        onClick={() => handleNavClick('/sample-papers')}
                     >
-                        Go Premium
+                        Sample Papers
                     </button>
                 </div>
 

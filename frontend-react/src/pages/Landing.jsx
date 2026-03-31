@@ -21,11 +21,11 @@ const Landing = () => {
 
                 <div className={styles.heroContent}>
                     <h1>Master Your<br />Academic Potential</h1>
-                    <p className={styles.tagline}>The ultimate learning platform for CBSE students covering Class 1 to 12. Expert-curated resources, premium notes, and interactive tests.</p>
+                    <p className={styles.tagline}>India's first ever platform that provides you the free sample papers for boards classes (class 10 and class 12 for all streams). The ultimate learning platform for CBSE students focusing on Class 10 and 12.</p>
                     <div className={styles.ctaButtons}>
                         <button className={`${styles.ctaButton} ${styles.studentBtn}`} onClick={() => navigate('/home')}>Start Learning</button>
-                        <button className={`${styles.ctaButton} ${styles.premiumBtn}`} onClick={() => navigate('/premium')}>Go Premium</button>
-                        <button className={`${styles.ctaButton} ${styles.adminBtn}`} onClick={() => navigate('/admin/login')}>Teacher / Admin</button>
+                        <button className={`${styles.ctaButton} ${styles.premiumBtn}`} onClick={() => navigate('/sample-papers')}>Sample Papers</button>
+                        {/* <button className={`${styles.ctaButton} ${styles.adminBtn}`} onClick={() => navigate('/admin/login')}>Teacher / Admin</button> */}
                     </div>
                 </div>
             </section>
@@ -43,11 +43,11 @@ const Landing = () => {
                         <h3>Exam Preparation</h3>
                         <p>Access previous years' papers, sample papers, and mock tests to excel in exams.</p>
                     </div>
-                    <div className={styles.featureCard}>
+                    {/* <div className={styles.featureCard}>
                         <div className={styles.featureIcon}>🎓</div>
                         <h3>Expert Mentorship</h3>
                         <p>Get guidance from top educators and subject matter experts every step of the way.</p>
-                    </div>
+                    </div> */}
                 </div>
             </section>
 
@@ -57,8 +57,8 @@ const Landing = () => {
                     <p>mastercbse is dedicated to providing high-quality educational resources. Our mission is to make premium education accessible to every student, regardless of their location.</p>
                     <div className={styles.statsContainer}>
                         <div className={styles.statItem}>
-                            <span className={styles.statNumber}>12+</span>
-                            <span className={styles.statLabel}>Classes</span>
+                            <span className={styles.statNumber}>2+</span>
+                            <span className={styles.statLabel}>Priority Classes</span>
                         </div>
                         <div className={styles.statItem}>
                             <span className={styles.statNumber}>50+</span>
@@ -98,7 +98,7 @@ const Landing = () => {
                 <p>Join thousands of students achieving their academic goals with mastercbse.</p>
                 <div className={styles.ctaButtons}>
                     <button style={{ background: 'white', color: '#4f46e5' }} className={styles.ctaButton} onClick={() => navigate('/home')}>Get Started Free</button>
-                    <button style={{ background: 'white', color: '#f59e0b' }} className={styles.ctaButton} onClick={() => navigate('/premium')}>Upgrade Now</button>
+                    <button style={{ background: 'white', color: '#f59e0b' }} className={styles.ctaButton} onClick={() => navigate('/sample-papers')}>Sample Papers</button>
                 </div>
             </section>
 
@@ -139,7 +139,7 @@ const Landing = () => {
                             <li><a href="#home">Home</a></li>
                             <li><a href="#about">About</a></li>
                             <li><a href="/signup">Student Portal</a></li>
-                            <li><a href="/admin/login">Admin Login</a></li>
+                            {/* <li><a href="/admin/login">Admin Login</a></li> */}
                         </ul>
                     </div>
                     <div className={styles.footerSection}>

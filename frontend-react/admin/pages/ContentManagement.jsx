@@ -57,10 +57,10 @@ const ContentManagement = () => {
                 }
 
                 // Set admin user
-                const currentAdmin = { 
-                    name: 'Ketan Singla', 
-                    email: import.meta.env.VITE_ADMIN_EMAIL, 
-                    role: 'admin' 
+                const currentAdmin = {
+                    name: 'Ketan Singla',
+                    email: import.meta.env.VITE_ADMIN_EMAIL,
+                    role: 'admin'
                 };
                 setAdmin(currentAdmin);
                 localStorage.setItem('adminUser', JSON.stringify(currentAdmin));
@@ -79,8 +79,8 @@ const ContentManagement = () => {
     const fetchContent = async (page = 1) => {
         try {
             // Include filter parameters in the API call
-            const response = await apiService.getContent({ 
-                page, 
+            const response = await apiService.getContent({
+                page,
                 limit: 9,
                 search: searchTerm,
                 class: selectedClass === 'all' ? '' : selectedClass,
@@ -131,13 +131,13 @@ const ContentManagement = () => {
     };
 
     const STREAMS = ['Arts', 'Commerce', 'Science (Medical)', 'Science (Non-Medical)'];
-    
+
     const SUBJECTS_BY_STREAM = {
-        'Arts': ['History', 'Geography', 'Political Science', 'Economics', 'Sociology', 'Psychology', 'English', 'Hindi'],
-        'Commerce': ['Accountancy', 'Business Studies', 'Economics', 'Mathematics', 'English', 'Informatics Practices'],
-        'Science (Medical)': ['Physics', 'Chemistry', 'Biology', 'English', 'Psychology'],
+        'Arts': ['History', 'Geography', 'Political Science', 'Sociology', 'Psychology', 'English'],
+        'Commerce': ['Accountancy', 'Business Studies', 'Economics', 'Mathematics', 'English'],
+        'Science (Medical)': ['Physics', 'Chemistry', 'Biology', 'English'],
         'Science (Non-Medical)': ['Physics', 'Chemistry', 'Mathematics', 'English', 'Computer Science'],
-        'General': ['Mathematics', 'Science', 'Social Science', 'English', 'Hindi', 'Computer Applications', 'Sanskrit']
+        'General': ['Mathematics', 'Science', 'Social Science', 'English', 'Computer Applications']
     };
 
     useEffect(() => {
@@ -201,7 +201,7 @@ const ContentManagement = () => {
     const validateForm = () => {
         if (!formData.title) return { valid: false, message: 'Please enter a title' };
         if (!formData.subject) return { valid: false, message: 'Please select a subject' };
-        
+
         const classNum = parseInt(formData.class);
         if (classNum >= 11 && !formData.stream) {
             return { valid: false, message: 'Please select a stream for class 11 or 12' };
@@ -220,7 +220,7 @@ const ContentManagement = () => {
 
     const handleAddToQueue = (e) => {
         if (e) e.preventDefault();
-        
+
         const validation = validateForm();
         if (!validation.valid) {
             setNotification({
@@ -240,9 +240,9 @@ const ContentManagement = () => {
             uploadType: uploadType,
             subjects: subjects // include subjects for display if needed
         };
-        
+
         setStagedContent(prev => [...prev, newItem]);
-        
+
         // Reset form for next entry
         setFormData({
             title: '',
@@ -256,7 +256,7 @@ const ContentManagement = () => {
         });
         setSelectedFile(null);
         setUploadType('url');
-        
+
         setNotification({
             isOpen: true,
             title: 'Added to Queue',
@@ -271,7 +271,7 @@ const ContentManagement = () => {
 
     const handleBatchUpload = async () => {
         if (stagedContent.length === 0) return;
-        
+
         setLoading(true);
         let successCount = 0;
         let failCount = 0;
@@ -286,7 +286,7 @@ const ContentManagement = () => {
                 }
 
                 const data = new FormData();
-                
+
                 // Append all fields
                 Object.keys(item).forEach(key => {
                     if (!['tempId', 'file', 'uploadType', 'subjects'].includes(key)) {
@@ -329,23 +329,23 @@ const ContentManagement = () => {
 
     const handleSaveContent = async (e) => {
         e.preventDefault();
-        
+
         // If we have staged content, maybe user wants to upload all?
         // But usually this is for editing or single direct save
         if (!editingContent && stagedContent.length > 0) {
-             // If form is empty, just upload staged
-             if (!formData.title) {
-                 await handleBatchUpload();
-                 return;
-             }
-             // If form has data, add it first then upload?
-             // Let's keep it simple: Save button in footer handles editing OR single save
-             // We'll add a separate footer action for batch
+            // If form is empty, just upload staged
+            if (!formData.title) {
+                await handleBatchUpload();
+                return;
+            }
+            // If form has data, add it first then upload?
+            // Let's keep it simple: Save button in footer handles editing OR single save
+            // We'll add a separate footer action for batch
         }
 
         try {
             setLoading(true);
-            
+
             // Validate
             const validation = validateForm();
             if (!validation.valid) {
@@ -567,8 +567,8 @@ const ContentManagement = () => {
                                 className="filter-select"
                             >
                                 <option value="all">All Classes</option>
-                                {[...Array(12)].map((_, i) => (
-                                    <option key={i + 1} value={String(i + 1)}>Class {i + 1}</option>
+                                {[10, 12].map((num) => (
+                                    <option key={num} value={String(num)}>Class {num}</option>
                                 ))}
                             </select>
                         </div>
@@ -665,8 +665,8 @@ const ContentManagement = () => {
 
                     {pagination.pages > 1 && (
                         <div className="pagination-controls">
-                            <button 
-                                className="pagination-btn" 
+                            <button
+                                className="pagination-btn"
                                 onClick={() => fetchContent(pagination.page - 1)}
                                 disabled={pagination.page <= 1}
                             >
@@ -675,8 +675,8 @@ const ContentManagement = () => {
                             <span className="pagination-info">
                                 Page {pagination.page} of {pagination.pages} ({pagination.total} items)
                             </span>
-                            <button 
-                                className="pagination-btn" 
+                            <button
+                                className="pagination-btn"
                                 onClick={() => fetchContent(pagination.page + 1)}
                                 disabled={pagination.page >= pagination.pages}
                             >
@@ -747,8 +747,8 @@ const ContentManagement = () => {
                                         onChange={handleFormChange}
                                         required
                                     >
-                                        {[...Array(12)].map((_, i) => (
-                                            <option key={i + 1} value={i + 1}>Class {i + 1}</option>
+                                        {[10, 12].map((num) => (
+                                            <option key={num} value={num}>Class {num}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -812,7 +812,7 @@ const ContentManagement = () => {
                                         <div className="source-info">Using URL for {formData.type} content</div>
                                     )}
 
-                                    { (uploadType === 'url' || (formData.type !== 'pdf' && formData.type !== 'SAMPLE_PAPER')) ? (
+                                    {(uploadType === 'url' || (formData.type !== 'pdf' && formData.type !== 'SAMPLE_PAPER')) ? (
                                         <input
                                             type="url"
                                             name="contentUrl"
@@ -833,7 +833,7 @@ const ContentManagement = () => {
                                                 required={!editingContent}
                                             />
                                             {selectedFile && <div className="file-name">Selected: {selectedFile.name}</div>}
-                                            {editingContent && editingContent.contentUrl && !selectedFile && 
+                                            {editingContent && editingContent.contentUrl && !selectedFile &&
                                                 <div className="current-file">Current: {editingContent.contentUrl}</div>
                                             }
                                         </div>
@@ -855,8 +855,8 @@ const ContentManagement = () => {
                             {!editingContent && (
                                 <div className="staged-content-section">
                                     <div className="queue-actions">
-                                        <button 
-                                            type="button" 
+                                        <button
+                                            type="button"
                                             className="btn-add-queue"
                                             onClick={handleAddToQueue}
                                         >
@@ -879,8 +879,8 @@ const ContentManagement = () => {
                                                                 Class {item.class} • {item.subject} • {item.uploadType === 'file' ? 'File' : 'URL'}
                                                             </span>
                                                         </div>
-                                                        <button 
-                                                            type="button" 
+                                                        <button
+                                                            type="button"
                                                             className="remove-staged-btn"
                                                             onClick={() => handleRemoveStaged(item.tempId)}
                                                             title="Remove from queue"
@@ -907,10 +907,10 @@ const ContentManagement = () => {
                                 >
                                     Cancel
                                 </button>
-                                
+
                                 {!editingContent && stagedContent.length > 0 && (
-                                    <button 
-                                        type="button" 
+                                    <button
+                                        type="button"
                                         className="btn-save batch-upload-btn"
                                         onClick={handleBatchUpload}
                                     >
