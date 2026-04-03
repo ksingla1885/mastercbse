@@ -20,11 +20,13 @@ module.exports = {
             'http://localhost:5173',
             'http://127.0.0.1:5173',
             'https://mc-backend-tau.vercel.app',
+            'https://www.mastercbse.com',
+            'https://mastercbse.com',
             /\.vercel\.app$/ // Allow any vercel deployment
         ],
         credentials: true,
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-        allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Authorization']
+        allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
     },
     
     // Cookie Configuration

@@ -46,7 +46,7 @@ app.use((req, res, next) => {
 });
 
 // Handle preflight requests
-app.options('*', cors());
+app.options('*', cors(serverConfig.cors));
 
 // In-memory user storage (for demo purposes)
 // In production, this would be in a database
