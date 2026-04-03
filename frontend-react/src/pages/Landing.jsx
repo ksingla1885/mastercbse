@@ -21,7 +21,7 @@ const Landing = () => {
 
                 <div className={styles.heroContent}>
                     <h1>Master Your<br />Academic Potential</h1>
-                    <p className={styles.tagline}>India's first ever platform that provides you the free sample papers for boards classes (class 10 and class 12 for all streams). The ultimate learning platform for CBSE students focusing on Class 10 and 12.</p>
+                    <p className={styles.tagline}>India's first platform that provides you the free sample papers for boards classes (class 10 & 12 for all streams). The ultimate learning platform for CBSE students focusing on Class 10 & 12.</p>
                     <div className={styles.ctaButtons}>
                         <button className={`${styles.ctaButton} ${styles.studentBtn}`} onClick={() => navigate('/home')}>Start Learning</button>
                         <button className={`${styles.ctaButton} ${styles.premiumBtn}`} onClick={() => navigate('/sample-papers')}>Sample Papers</button>
@@ -36,12 +36,12 @@ const Landing = () => {
                     <div className={styles.featureCard}>
                         <div className={styles.featureIcon}>📚</div>
                         <h3>Comprehensive Curriculum</h3>
-                        <p>Structured learning materials strictly following the latest CBSE syllabus and guidelines.</p>
+                        <p>Structured learning materials following the CBSE syllabus and guidelines.</p>
                     </div>
                     <div className={styles.featureCard}>
                         <div className={styles.featureIcon}>🎯</div>
                         <h3>Exam Preparation</h3>
-                        <p>Access previous years' papers, sample papers, and mock tests to excel in exams.</p>
+                        <p>Access previous years' papers, sample papers.</p>
                     </div>
                     {/* <div className={styles.featureCard}>
                         <div className={styles.featureIcon}>🎓</div>
