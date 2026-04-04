@@ -213,10 +213,14 @@ class AdminController {
                 query = query.eq('subject', subject);
             }
             if (req.query.stream && req.query.stream !== 'all') {
-                if (req.query.stream === 'Common (All Streams)' || req.query.stream === '') {
+                const requestedStream = req.query.stream;
+                if (requestedStream === 'Common (All Streams)' || requestedStream === '') {
                     query = query.is('stream', null);
+                } else if (requestedStream === 'PCB' || requestedStream === 'PCM') {
+                    // Include papers from the specific stream AND the generic SCIENCE stream (common to both)
+                    query = query.in('stream', [requestedStream, 'SCIENCE']);
                 } else {
-                    query = query.eq('stream', req.query.stream);
+                    query = query.eq('stream', requestedStream);
                 }
             }
             if (type) {

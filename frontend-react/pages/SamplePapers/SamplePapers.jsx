@@ -16,10 +16,10 @@ const SamplePapers = () => {
     const [selectedSubject, setSelectedSubject] = useState('');
 
     const STREAMS_12 = [
-        { id: 'Medical', name: 'Medical', dbName: 'Science (Medical)', icon: '🩺' },
-        { id: 'Non-Medical', name: 'Non-Medical', dbName: 'Science (Non-Medical)', icon: '🧪' },
-        { id: 'Commerce', name: 'Commerce', dbName: 'Commerce', icon: '📊' },
-        { id: 'Humanities', name: 'Humanities', dbName: 'Arts', icon: '🏛️' }
+        { id: 'Medical', name: 'Medical', dbName: 'PCB', icon: '🩺' },
+        { id: 'Non-Medical', name: 'Non-Medical', dbName: 'PCM', icon: '🧪' },
+        { id: 'Commerce', name: 'Commerce', dbName: 'COMMERCE', icon: '📊' },
+        { id: 'Humanities', name: 'Humanities', dbName: 'HUMANITIES', icon: '🏛️' }
     ];
 
     const SUBJECTS_10 = ['Mathematics', 'Science', 'Social Science', 'English', 'Computer Applications'];
@@ -66,8 +66,17 @@ const SamplePapers = () => {
             filtered = filtered.filter(p => String(p.class) === activeClassView);
         }
         if (selectedStream) {
-            // When a stream is selected, include papers for that stream AND papers with no stream (common)
-            filtered = filtered.filter(p => p.stream === selectedStream.dbName || !p.stream);
+            // When a stream is selected, include:
+            // 1. Papers matching exactly the stream's dbName
+            // 2. Generic 'SCIENCE' papers if selecting PCB or PCM (since Science contains Physics & Chemistry)
+            // 3. Papers with no stream (common)
+            filtered = filtered.filter(p => {
+                const isExactMatch = p.stream === selectedStream.dbName;
+                const isCommon = !p.stream;
+                const isGenericScienceMatch = (selectedStream.dbName === 'PCB' || selectedStream.dbName === 'PCM') && p.stream === 'SCIENCE';
+                
+                return isExactMatch || isCommon || isGenericScienceMatch;
+            });
         }
         if (selectedSubject) {
             filtered = filtered.filter(p => p.subject === selectedSubject);

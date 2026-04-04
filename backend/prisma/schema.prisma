@@ -44,6 +44,7 @@ enum Role {
 enum Stream {
   PCM
   PCB
+  SCIENCE
   COMMERCE
   HUMANITIES
 }
@@ -123,6 +124,8 @@ model Content {
   contentType ContentType @map("content_type")
   contentUrl  String?     @map("content_url") @db.Text
   isPremium   Boolean     @default(false) @map("is_premium")
+  status      String?     @default("published") @db.VarChar(50)
+  views       Int         @default(0) @db.Integer
   order       Int         @default(0) @db.Integer
   
   // Timestamps

@@ -85,7 +85,7 @@ const ContentManagement = () => {
                 search: searchTerm,
                 class: selectedClass === 'all' ? '' : selectedClass,
                 subject: selectedSubject === 'all' ? '' : selectedSubject,
-                stream: selectedStream === 'all' ? '' : selectedStream
+                stream: selectedStream === 'all' ? '' : mapStreamToEnum(selectedStream)
             });
 
             if (response.success) {
@@ -130,15 +130,39 @@ const ContentManagement = () => {
         setSelectedSubject('all');
     };
 
-    const STREAMS = ['Common (All Streams)', 'Arts', 'Commerce', 'Science (Medical)', 'Science (Non-Medical)'];
+    const STREAMS = ['Common (All Streams)', 'Arts', 'Commerce', 'Science', 'Science (Medical)', 'Science (Non-Medical)'];
 
     const SUBJECTS_BY_STREAM = {
         'Common (All Streams)': ['English', 'Physical Education'],
         'Arts': ['History', 'Geography', 'Political Science', 'Psychology', 'English', 'Physical Education'],
         'Commerce': ['Accountancy', 'Business Studies', 'Economics', 'Mathematics', 'English', 'Physical Education'],
+        'Science': ['Physics', 'Chemistry'],
         'Science (Medical)': ['Physics', 'Chemistry', 'Biology', 'English', 'Physical Education'],
         'Science (Non-Medical)': ['Physics', 'Chemistry', 'Mathematics', 'English', 'Computer Science', 'Physical Education'],
         'General': ['Mathematics', 'Science', 'Social Science', 'English', 'Computer Applications']
+    };
+
+    const mapStreamToEnum = (displayStream) => {
+        const mapping = {
+            'Arts': 'HUMANITIES',
+            'Commerce': 'COMMERCE',
+            'Science': 'SCIENCE',
+            'Science (Medical)': 'PCB',
+            'Science (Non-Medical)': 'PCM',
+            'Common (All Streams)': ''
+        };
+        return mapping[displayStream] || displayStream;
+    };
+
+    const mapEnumToStream = (enumValue) => {
+        const mapping = {
+            'HUMANITIES': 'Arts',
+            'COMMERCE': 'Commerce',
+            'SCIENCE': 'Science',
+            'PCB': 'Science (Medical)',
+            'PCM': 'Science (Non-Medical)'
+        };
+        return mapping[enumValue] || enumValue || '';
     };
 
     useEffect(() => {
@@ -180,6 +204,7 @@ const ContentManagement = () => {
                 const upperSubs = [...new Set([
                     ...SUBJECTS_BY_STREAM['Arts'],
                     ...SUBJECTS_BY_STREAM['Commerce'],
+                    ...SUBJECTS_BY_STREAM['Science'],
                     ...SUBJECTS_BY_STREAM['Science (Medical)'],
                     ...SUBJECTS_BY_STREAM['Science (Non-Medical)']
                 ])].sort();
@@ -293,10 +318,10 @@ const ContentManagement = () => {
                     if (!['tempId', 'file', 'uploadType', 'subjects'].includes(key)) {
                         let value = item[key];
                         // Map "Common" to empty string for backend null conversion
-                        if (key === 'stream' && value === 'Common (All Streams)') {
-                            value = '';
+                        if (key === 'stream') {
+                            value = mapStreamToEnum(value);
                         }
-                        data.append(key, value);
+                        data.append(key, value || '');
                     }
                 });
 
@@ -369,11 +394,10 @@ const ContentManagement = () => {
             const data = new FormData();
             Object.keys(formData).forEach(key => {
                 let value = formData[key];
-                // Map "Common" to empty string for backend null conversion
-                if (key === 'stream' && value === 'Common (All Streams)') {
-                    value = '';
+                if (key === 'stream') {
+                    value = mapStreamToEnum(value);
                 }
-                data.append(key, value);
+                data.append(key, value || '');
             });
 
             if (uploadType === 'file' && selectedFile) {
@@ -429,9 +453,8 @@ const ContentManagement = () => {
         setFormData({
             title: contentItem.title || '',
             description: contentItem.description || '',
-            type: contentItem.type || 'pdf',
             class: String(contentItem.class) || '10',
-            stream: contentItem.stream || '',
+            stream: mapEnumToStream(contentItem.stream),
             subject: contentItem.subject || '',
             contentUrl: contentItem.contentUrl || '',
             isPremium: contentItem.isPremium || false
@@ -627,7 +650,7 @@ const ContentManagement = () => {
                                     <div className="content-meta">
                                         <span><i className="fas fa-graduation-cap"></i> Class {item.class}</span>
                                         <span><i className="fas fa-book"></i> {item.subject}</span>
-                                        <span><i className="fas fa-layer-group"></i> {item.stream}</span>
+                                        <span><i className="fas fa-layer-group"></i> {mapEnumToStream(item.stream)}</span>
                                     </div>
                                     <div className="content-details">
                                         <span><i className="fas fa-clock"></i> {item.duration}</span>
